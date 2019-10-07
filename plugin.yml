@@ -1,0 +1,82 @@
+name: Ci_ville_isation
+version: 0.8
+author: Lerwox
+main: fr.lerwox.ci_ville_isation.Main
+commands:
+  ci:
+    description: open a GUI with the classement of cities
+    usage: /ci
+    permission: ci.menu
+    
+  ci vote:
+    description : vote for a city
+    usage: /ci vote <city>
+    permission: ci.vote
+    
+  ci create:
+    description : create a city
+    usage: /ci create <city> <creator>
+    permission: ci.create
+    
+  ci remove:
+    description : remove a city
+    usage: /ci remove <city>
+    permission: ci.remove
+    
+  ci reset:
+    description : reset the number of vote of a city
+    usage: /ci reset <city>
+    permission: ci.remove
+    
+  ci resetall:
+    description : Reset all vote or only all cities votes or only all players votes
+    usage: /ci resetall OR /ci resetall cities | players
+    permission: ci.remove
+    
+  ci settp:
+    description : set the teleport point of a city
+    usage: /ci settp <city>
+    permission: ci.settp
+    
+  ci removetp:
+    description : remove the teleport point of a city
+    usage: /ci removetp <city>
+    permission: ci.removetp
+    
+  ci tp:
+    description : teleport the player to a city
+    usage: /ci tp <city>
+    permission: ci.tp
+    
+  ci help:
+    description: help for the command's plugin
+    usage: /ci help
+    permission: ci.help
+    
+permissions:
+   ci.*:
+     description: All command for ci_ville_isation
+     children:
+       ci.use: true
+       ci.admin: true
+   ci.use:
+     description: basic command for ci_ville_isation
+     default: true
+     children: 
+       ci.menu: true
+       ci.vote: true
+       ci.help: true
+   ci.admin:
+     description: All the admin command for ci_ville_isation
+     default: op
+     children:
+       ci.use: true
+       ci.create: true
+       ci.remove: true
+       ci.reset: true
+       ci.settp: true
+       ci.removetp: true
+       ci.tp: true
+       ci.vote.cooldown.bypass: true
+       ci.settp.cooldown.bypass: true
+       ci.tp.cooldown.bypass: true

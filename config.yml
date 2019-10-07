@@ -1,0 +1,164 @@
+###############################################
+##                                           ##
+##             Created by Lerwox             ##
+##                                           ##
+###############################################
+
+###############################################
+##                                           ##
+##                  Note                     ##
+##                                           ##
+###############################################
+
+# If you want to use special characters in this document, such as accented letters, you MUST save the file as UTF-8, not ANSI.
+# If you receive an error when ci_ville_isation loads, ensure that:
+#   - No tabs are present: YAML only allows spaces
+#   - Indents are correct: YAML hierarchy is based entirely on indentation
+#   - You have "escaped" all apostrophes in your text: If you want to write "don't", for example, write "don''t" instead (note the doubled apostrophe)
+#   - Text with symbols is enclosed in single or double quotation marks
+
+# Version 0.8
+ 
+###############################################
+##                                           ##
+##                  Config                   ##
+##                                           ##
+###############################################
+
+
+#cooldown in second
+cooldown:
+
+  #waiting time before teleportation
+  tp: 3
+  
+  #waiting time before vote again
+  vote: 3600
+  
+  #waiting time before change the city teleportation point
+  modif-tp: 84600
+  
+  #time to perform the /ci confirm commande
+  confirm: 15
+
+#maximum number of characters for the name of a city
+max-size: 15
+
+#When it's true the creator of city can create, modify and delete the
+#teleport point of his city
+creator-modif-tp: true
+
+#When it's true all ci_ville_isation perform command's are back to console
+#it can be really cancer
+log_command: false
+
+#All messages are modifiable, just be careful, verify that all messages 
+#are between "". example: "msg"
+#You can use & or § for the chat color, refer to minecraft color (https://www.planetminecraft.com/blog/how-to-chat-in-color-magic-and-different-format-in-minecraft/
+text:
+
+  #help section is here for player, admin you can use /help ci_ville_isation
+  #IN WORK (not already fonctionnal) : If a player hasn't a permission, the message help of this command will not appear
+  help:
+    title: "§a----- §eHelp §a-----"
+    ci: "/ci : Open a panel with all the cities"
+    vote: "/ci vote : vote for a city"
+    create: "/ci create : create a city"
+    remove: "/ci remove : remove a city"
+    reset: "/ci reset : reset the number of vote of a city"
+    resetall: "/ci resetall : Reset all vote (cities and players)"
+    resetall2: "/ci resetall cities | players : resetall vote of cities OR players"
+    settp: "/ci settp : create tp for a city"
+    removetp: "/ci removetp : remove tp for a city"
+    tp: "/ci tp : teleporte you to a city"
+    
+  #usage section is here if you type a command incorrectly
+  usage:
+    ci: "Bad command ! Use /ci help for more informations"
+    vote: "Usage: /ci vote <city>"
+    create: "Usage: /ci create <city> <créateur>"
+    remove: "Usage: /ci remove <city>"
+    reset: "Usage: /ci reset <city>"
+    resetall: "Usage: /ci resetall OR /ci resetall cities | players"
+    settp: "Usage: /ci settp <city>"
+    removetp: "Usage: /ci removetp <city>"
+    tp: "Usage: /ci tp <city>"
+    
+  #msg section is for all back message in the chat
+  #Use %time% ONLY in : tp-cooldown, already-vote, cant-modif-tp, confirm.
+  #Use %cmd% ONLY in : confirm.
+  msg:
+    create: "§8[§e!§8] §eCity has been created !"
+    remove: "§8[§e!§8] §eCity has been removed !"
+    reset: "§8[§e!§8] §eCity vote's reset !"
+    resetall: "§8[§e!§8] §eAll Votes has been removed !"
+    resetall-cities: "§8[§e!§8] §eAll Cities vote has been removed !"
+    resetall-players: "§8[§e!§8] §eAll Players vote has been removed !"
+    #You don't need to put an espace after %time%
+    confirm: "§8[§e!§8] §eYou have §a%time%§eto type §a/ci confirm§e to confirm the command : §a%cmd%§e !"
+    nothing-conf: "§8[§e!§8] §eYou haven't a command to confirm !"
+    tp-create: "§8[§e!§8] §eTeleportation point to the city created !"
+    tp-remove: "§8[§e!§8] §eTeleportation point to the city removed !"
+    tp-modif: "§8[§e!§8] §eTeleportation point to the city changed !"
+    tp-cooldown: "§8[§e!§8] §eTeleportation in §a%time%§e, don't move !"
+    tp: "§8[§e!§8] §eYou has been teleported !"
+    tp-cancel: "§8[§e!§8] §cTeleportation canceled !"
+    vote: "§8[§e!§8] §aVote saved !"
+    already-vote: "§8[§e!§8] §eYou can vote in §a%time%§e !"
+    cant-modif-tp: "§8[§e!§8] §eYou can set a new teleport point in §a%time%§e !"
+    no-tp: "§8[§e!§8] §eThe city hasn't a tp point !"
+    not-exist: "§8[§e!§8] §eCity doesn't exist !"
+    already-exist: "§8[§e!§8] §eThis city already exist !"
+    bad-char: "§8[§e!§8] §ePlease enter a valid name !"
+    max-limit: "§8[§e!§8] §ePlease enter a name with max §a20 characters§e !"
+    player_disconnected: "§8[§e!§8] §eCreator is not connected, to ensure the security create it when he's connected !"
+    console: "§8[§e!§8] §eYou need to be a player to do this !"
+    no-permission: "§8[§e!§8] §cYou haven't the permission to do this !"
+    
+  #date section is for the printing of %time% in other messages
+  #Use %(time indication)% ONLY in : (time_indication). Exemple %week% ONLY in week
+  date:
+    week: "%week%w "
+    day: "%day%d "
+    hour: "%hour%h "
+    minute: "%min%m "
+    second: "%sec%s "
+    
+  #menu section is for the printing of the GUI (title, item, lore...)
+  #Use %city% ONLY in : ci:city, ci:info:last_vote, city:city.
+  #Use %nb_vote% ONLY in : ci:nb_vote, ci:info:nb_vote.
+  #Use %creator% ONLY in : ci:creator.
+  menu:
+    return_button_name: "§c§lReturn"
+    return_button_desc: "§7Return to previous menu"
+    close_button_name: "§c§lClose"
+    close_button_desc: "§7Close menu"
+    next_button_name: "§a§lNext ⇨"
+    next_button_desc: "§7Go to the next page\n§7for other cities"
+    prev_button_name: "§a§l⇦ Previous"
+    prev_button_desc: "§7Go to the previous page\n§7for other cities"
+    confirm_no: "§cNo"
+    confirm_no_desc: "§7I don't want to rate it"
+    confirm_yes: "§aYes"
+    confirm_yes_desc: "§7Take it :p"
+    ci:
+      title: "§8§l❖ §e§lCities §8§l❖"
+      city: "§8•§e§l City §7§l: §9§l%city% §r§8•"
+      creator: "§8•§6 Creator : §9§l%creator%§r §8•"
+      nb_vote: "§8•§6 Vote value : §9§l%nb_vote%§r §8•"
+      info:
+        name: "§8•§a§l Information §8•"
+        nb_vote: "§8•§6 Nb of vote : §9§l%nb_vote%§r §8•"
+        last_vote: "§8•§6 Last vote : §9§l%city%§r §8•"
+    city:
+      title: "§8§l❖ §e§lInformations §8§l❖"
+      city: "§8• §6§l%city% §8•"
+      city_desc: "§8• §9§l%city%§r§7 was created\nby §a§l%creator%§r §8•"
+      teleportation: "§8•§6 Teleporation §8•"
+      teleportation_desc: "§8•§6 Teleporation to the city §8•"
+      vote: "§8•§6 Vote §8•"
+      vote_desc: "§8•§6 Vote for this city §8•"
+    vote:
+      title: "§8§l❖ §e§lVote §8§l❖"
+    tp:
+      title: "§8§l❖ §e§lTeleportation §8§l❖"
